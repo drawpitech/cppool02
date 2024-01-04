@@ -46,3 +46,11 @@ getLineLength = length <$> getLine
 
 printAndGetLength :: String -> IO Int
 printAndGetLength s = putStrLn s >> return (length s)
+
+printBox :: Int -> IO ()
+printBox 1 = putStrLn "++"
+printBox n | n <= 0 = return ()
+           | otherwise = putStr $ e ++ concat (replicate (n - 2) m) ++ e
+           where e = "+" ++ r '-' ++ "+\n"
+                 m = "|" ++ r ' ' ++ "|\n"
+                 r = replicate (n * 2 - 2)
