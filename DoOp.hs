@@ -54,3 +54,6 @@ printBox n | n <= 0 = return ()
            where e = "+" ++ r '-' ++ "+\n"
                  m = "|" ++ r ' ' ++ "|\n"
                  r = replicate (n * 2 - 2)
+
+concatLines :: Int -> IO String
+concatLines n = foldlM (\v _ -> (v ++) <$> getLine) "" [1..n]
