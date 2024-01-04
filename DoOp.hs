@@ -40,3 +40,6 @@ readInt :: [Char] -> Maybe Int
 readInt [] = Nothing
 readInt arr = foldlM
     (\v e -> if isDigit e then Just $ v * 10 + digitToInt e else Nothing) 0 arr
+
+getLineLength :: IO Int
+getLineLength = length <$> getLine
