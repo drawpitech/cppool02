@@ -13,3 +13,8 @@ myElem comp (e:arr) | comp == e = True
 safeDiv :: Int -> Int -> Maybe Int
 safeDiv _ 0 = Nothing
 safeDiv x y = Just $ div x y
+
+safeNth :: [a] -> Int -> Maybe a
+safeNth [] _ = Nothing
+safeNth (e:_) 0 = Just e
+safeNth (e:arr) n = safeNth arr (n - 1)
