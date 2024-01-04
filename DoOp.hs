@@ -10,6 +10,7 @@ module Main where
 import Data.Char (digitToInt, isDigit)
 import Data.Foldable (foldlM)
 import System.Environment (getArgs)
+import Control.Monad (join)
 
 myElem :: Eq a => a -> [a] -> Bool
 myElem _ [] = False
@@ -64,5 +65,16 @@ concatLines n = foldlM (\v _ -> (v ++) <$> getLine) "" [1..n]
 getInt :: IO (Maybe Int)
 getInt = readInt <$> getLine
 
+
+solve :: [String] -> Maybe Int
+solve [x, "+", y] = maybeDo (+) (readInt x) (readInt y)
+solve [x, "-", y] = maybeDo (-) (readInt x) (readInt y)
+solve [x, "*", y] = maybeDo (*) (readInt x) (readInt y)
+solve [x, "/", y] = join $ maybeDo safeDiv (readInt x) (readInt y)
+
+res :: Maybe Int -> Int
+res Nothing = 0
+res (Just x) = x
+
 main :: IO ()
-main = print 0b11
+main = getArgs >>= print . res . solve
