@@ -23,6 +23,10 @@ safeDiv :: Int -> Int -> Maybe Int
 safeDiv _ 0 = Nothing
 safeDiv x y = Just $ div x y
 
+safeMod :: Int -> Int -> Maybe Int
+safeMod _ 0 = Nothing
+safeMod x y = Just $ mod x y
+
 safeNth :: [a] -> Int -> Maybe a
 safeNth [] _ = Nothing
 safeNth (e:_) 0 = Just e
@@ -75,3 +79,4 @@ main = getArgs >>= res . solve
           solve [x, "-", y] = maybeDo (-) (readInt x) (readInt y)
           solve [x, "*", y] = maybeDo (*) (readInt x) (readInt y)
           solve [x, "/", y] = join $ maybeDo safeDiv (readInt x) (readInt y)
+          solve [x, "%", y] = join $ maybeDo safeMod (readInt x) (readInt y)
