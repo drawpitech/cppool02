@@ -1,3 +1,12 @@
+# Binaries
+*.out
+doop
+
+# Compilation
+.build/
+*.a
+*.hi
+
 # Editors junk
 *~
 \#*#

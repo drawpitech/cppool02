@@ -5,8 +5,11 @@
 -- Source
 -}
 
+module Main where
+
 import Data.Char (digitToInt, isDigit)
 import Data.Foldable (foldlM)
+import System.Environment (getArgs)
 
 myElem :: Eq a => a -> [a] -> Bool
 myElem _ [] = False
@@ -60,3 +63,6 @@ concatLines n = foldlM (\v _ -> (v ++) <$> getLine) "" [1..n]
 
 getInt :: IO (Maybe Int)
 getInt = readInt <$> getLine
+
+main :: IO ()
+main = print 0b11
