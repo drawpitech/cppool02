@@ -18,3 +18,6 @@ safeNth :: [a] -> Int -> Maybe a
 safeNth [] _ = Nothing
 safeNth (e:_) 0 = Just e
 safeNth (e:arr) n = safeNth arr (n - 1)
+
+safeSucc :: Maybe Int -> Maybe Int
+safeSucc = fmap (+ 1)
