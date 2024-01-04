@@ -57,3 +57,6 @@ printBox n | n <= 0 = return ()
 
 concatLines :: Int -> IO String
 concatLines n = foldlM (\v _ -> (v ++) <$> getLine) "" [1..n]
+
+getInt :: IO (Maybe Int)
+getInt = readInt <$> getLine
