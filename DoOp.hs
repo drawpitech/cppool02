@@ -43,3 +43,6 @@ readInt arr = foldlM
 
 getLineLength :: IO Int
 getLineLength = length <$> getLine
+
+printAndGetLength :: String -> IO Int
+printAndGetLength s = putStrLn s >> return (length s)
