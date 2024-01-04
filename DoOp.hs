@@ -5,6 +5,9 @@
 -- Source
 -}
 
+import Data.Char (digitToInt, isDigit)
+import Data.Foldable (foldlM)
+
 myElem :: Eq a => a -> [a] -> Bool
 myElem _ [] = False
 myElem comp (e:arr) | comp == e = True
@@ -32,3 +35,8 @@ maybeDo f a b = do
     a <- a
     b <- b
     Just $ f a b
+
+readInt :: [Char] -> Maybe Int
+readInt [] = Nothing
+readInt arr = foldlM
+    (\v e -> if isDigit e then Just $ v * 10 + digitToInt e else Nothing) 0 arr
