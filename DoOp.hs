@@ -26,3 +26,9 @@ myLookup :: Eq a => a -> [(a, b)] -> Maybe b
 myLookup _ []  = Nothing
 myLookup n ((i, e):arr) | n == i = Just e
                         | otherwise = myLookup n arr
+
+maybeDo :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+maybeDo f a b = do
+    a <- a
+    b <- b
+    Just $ f a b
