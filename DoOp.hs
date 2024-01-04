@@ -21,3 +21,8 @@ safeNth (e:arr) n = safeNth arr (n - 1)
 
 safeSucc :: Maybe Int -> Maybe Int
 safeSucc = fmap (+ 1)
+
+myLookup :: Eq a => a -> [(a, b)] -> Maybe b
+myLookup _ []  = Nothing
+myLookup n ((i, e):arr) | n == i = Just e
+                        | otherwise = myLookup n arr
