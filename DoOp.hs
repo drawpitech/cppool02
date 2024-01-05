@@ -11,8 +11,7 @@ import Data.Char (digitToInt, isDigit)
 import Data.Foldable (foldlM)
 import System.Environment (getArgs)
 import Control.Monad (join)
-import System.Exit (exitWith)
-import Distribution.Compat.Prelude (ExitCode(ExitFailure))
+import System.Exit (exitWith, ExitCode(ExitFailure))
 
 myElem :: Eq a => a -> [a] -> Bool
 myElem _ [] = False
