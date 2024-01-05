@@ -80,3 +80,4 @@ main = getArgs >>= exit . solve
           solve [x, "*", y] = maybeDo (*) (readInt x) (readInt y)
           solve [x, "/", y] = join $ maybeDo safeDiv (readInt x) (readInt y)
           solve [x, "%", y] = join $ maybeDo safeMod (readInt x) (readInt y)
+          solve _ = Nothing
