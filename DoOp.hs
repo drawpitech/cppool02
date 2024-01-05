@@ -47,6 +47,7 @@ maybeDo f a b = do
 
 readInt :: [Char] -> Maybe Int
 readInt [] = Nothing
+readInt ('-':arr) = readInt arr >>= Just . (* (-1))
 readInt arr = foldlM
     (\v e -> if isDigit e then Just $ v * 10 + digitToInt e else Nothing) 0 arr
 
@@ -71,9 +72,9 @@ getInt :: IO (Maybe Int)
 getInt = readInt <$> getLine
 
 main :: IO ()
-main = getArgs >>= res . solve
-    where res Nothing = exitWith (ExitFailure 84)
-          res (Just x) = print x
+main = getArgs >>= exit . solve
+    where exit Nothing = exitWith (ExitFailure 84)
+          exit (Just x) = print x
           solve [x, "+", y] = maybeDo (+) (readInt x) (readInt y)
           solve [x, "-", y] = maybeDo (-) (readInt x) (readInt y)
           solve [x, "*", y] = maybeDo (*) (readInt x) (readInt y)
